@@ -153,3 +153,58 @@
 
 
               int choice = getValidIntegerInput(scanner, "Choose an option (1-6): ", 1, 6);
+
+               switch (choice) {
+                              case 1: // Add a book
+                                  System.out.print("Enter book title: ");
+                                  scanner.nextLine(); // Clear buffer
+                                  String title = scanner.nextLine();
+
+                                  System.out.print("Enter book author: ");
+                                  String author = scanner.nextLine();
+
+                                  System.out.println("Choose a category:");
+                                  for (int i = 0; i < categories.length; i++) {
+                                      System.out.println((i + 1) + ". " + categories[i]);
+                                  }
+                                  int categoryChoice = getValidIntegerInput(scanner, "Enter category number (1-4): ", 1, categories.length);
+                                  String category = categories[categoryChoice - 1];
+
+                                  library.addBook(title, author, category);
+                                  System.out.println("Book added successfully!");
+                                  break;
+
+                              case 2: // Display books
+                                  library.displayBooks();
+                                  break;
+
+                              case 3: // Sort books by title
+                                  library.sortBooksByTitle();
+                                  System.out.println("Books sorted by title.");
+                                  break;
+
+                              case 4: // Remove a book
+                                  library.displayBooks();
+                                  int removeIndex = getValidIntegerInput(scanner, "Enter index of the book to remove (1 to " + library.books.size() + "): ", 1, library.books.size()) - 1;
+                                  library.removeBook(removeIndex);
+                                  System.out.println("Book removed successfully!");
+                                  break;
+
+                              case 5: // Undo last action
+                                  library.undoLastAction();
+                                  System.out.println("Undo last action (add/remove) executed.");
+                                  break;
+
+                              case 6: // Exit
+                                  running = false;
+                                  System.out.println("Exiting the system. Goodbye!");
+                                  break;
+
+                              default:
+                                  System.out.println("Invalid choice. Try again.");
+                          }
+                      }
+
+                      scanner.close();
+                  }
+              }
