@@ -34,45 +34,45 @@
 
     public class LibraryManagementSystem {
 
-        // Fixed-size array of categories
+       
 
         private static final String[] categories = {"Fiction", "Non-Fiction", "Science", "History"};
 
-        // Dynamic list of books
+       
 
         private ArrayList<Book> books = new ArrayList<>();
 
 
 
-        // Stack for undo operations (for both remove and add operations)
+      
 
         private Stack<Book> lastInsertedBooks = new Stack<>();
 
         public void addBook(String title, String author, String category) {
             Book newBook = new Book(title, author, category);
             books.add(newBook);
-            lastInsertedBooks.push(newBook); // Store for undo
+            lastInsertedBooks.push(newBook); 
         }
 
-        // Remove a book and push it to the undo stack
+       
         public void removeBook(int index) {
             if (index >= 0 && index < books.size()) {
                 Book removedBook = books.remove(index);
-                lastInsertedBooks.push(removedBook); // Store the removed book for undo
+                lastInsertedBooks.push(removedBook); 
             }
         }
 
-        // Undo the last insertion operation (or last removal)
+        
         public void undoLastAction() {
             if (!lastInsertedBooks.isEmpty()) {
                 Book lastBook = lastInsertedBooks.pop();
-                books.remove(lastBook); // Remove the book from the list if added or restored
+                books.remove(lastBook); 
             } else {
                 System.out.println("No action to undo.");
             }
         }
 
-        // Selection Sort implementation to sort books by title
+       
         public void sortBooksByTitle() {
             int n = books.size();
             for (int i = 0; i < n - 1; i++) {
@@ -82,14 +82,14 @@
                         minIndex = j;
                     }
                 }
-                // Swap the found minimum element with the first element
+                
                 Book temp = books.get(minIndex);
                 books.set(minIndex, books.get(i));
                 books.set(i, temp);
             }
         }
 
-        // Display all books
+        
         public void displayBooks() {
             if (books.isEmpty()) {
                 System.out.println("No books in the library.");
@@ -100,7 +100,6 @@
             }
         }
 
-      // Helper function to get valid input from user
 
       public static int getValidIntegerInput(Scanner scanner, String prompt, int min, int max) {
 
@@ -155,9 +154,9 @@
               int choice = getValidIntegerInput(scanner, "Choose an option (1-6): ", 1, 6);
 
                switch (choice) {
-                              case 1: // Add a book
+                              case 1: 
                                   System.out.print("Enter book title: ");
-                                  scanner.nextLine(); // Clear buffer
+                                  scanner.nextLine(); 
                                   String title = scanner.nextLine();
 
                                   System.out.print("Enter book author: ");
@@ -174,28 +173,28 @@
                                   System.out.println("Book added successfully!");
                                   break;
 
-                              case 2: // Display books
+                              case 2: 
                                   library.displayBooks();
                                   break;
 
-                              case 3: // Sort books by title
+                              case 3: 
                                   library.sortBooksByTitle();
                                   System.out.println("Books sorted by title.");
                                   break;
 
-                              case 4: // Remove a book
+                              case 4: 
                                   library.displayBooks();
                                   int removeIndex = getValidIntegerInput(scanner, "Enter index of the book to remove (1 to " + library.books.size() + "): ", 1, library.books.size()) - 1;
                                   library.removeBook(removeIndex);
                                   System.out.println("Book removed successfully!");
                                   break;
 
-                              case 5: // Undo last action
+                              case 5: 
                                   library.undoLastAction();
                                   System.out.println("Undo last action (add/remove) executed.");
                                   break;
 
-                              case 6: // Exit
+                              case 6: 
                                   running = false;
                                   System.out.println("Exiting the system. Goodbye!");
                                   break;
