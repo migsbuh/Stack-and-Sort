@@ -100,3 +100,56 @@
             }
         }
 
+      // Helper function to get valid input from user
+
+      public static int getValidIntegerInput(Scanner scanner, String prompt, int min, int max) {
+
+          int choice;
+
+          do {
+
+              System.out.print(prompt);
+
+              while (!scanner.hasNextInt()) {
+
+                  System.out.print("Invalid input. Please enter a number: ");
+
+                  scanner.next();
+
+              }
+
+              choice = scanner.nextInt();
+
+          } while (choice < min || choice > max);
+
+          return choice;
+
+      }
+
+      public static void main(String[] args) {
+
+          LibraryManagementSystem library = new LibraryManagementSystem();
+
+          Scanner scanner = new Scanner(System.in);
+
+          boolean running = true;
+
+          while (running) {
+
+              System.out.println("\nLibrary Management System Menu:");
+
+              System.out.println("1. Add a Book");
+
+              System.out.println("2. Display Books");
+
+              System.out.println("3. Sort Books by Title");
+
+              System.out.println("4. Remove a Book");
+
+              System.out.println("5. Undo Last Action");
+
+              System.out.println("6. Exit");
+
+
+
+              int choice = getValidIntegerInput(scanner, "Choose an option (1-6): ", 1, 6);
