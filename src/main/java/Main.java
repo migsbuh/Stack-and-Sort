@@ -1,14 +1,39 @@
-// import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.ArrayList;
+import java.util.Stack;
 
-// import org.junit.jupiter.api.Test;
+class Book{
+  String title;
+  String author;
+  String category;
 
-public class Main {
-  public static void main(String[] args) {
-    System.out.println("asdaddasdassadasadssads");
+  public Book(String title, String author, String category){
+    this.title = title;
+    this.author = author;
+    this.category = category;
   }
 
-  // @Test
-  // void addition() {
-  //     assertEquals(2, 1 + 1);
-  // }
-}
+  @Override
+
+      public String toString() {
+
+          return "Title: " + title + ", Author: " + author + ", Category: " + category;
+
+      }
+
+  }
+
+  public class LibraryManagementSystem {
+
+      
+
+      private static final String[] categories = {"Fiction", "Non-Fiction", "Science", "History"};
+
+      
+
+      private ArrayList<Book> books = new ArrayList<>();
+
+
+
+      
+
+      private Stack<Book> removedBooksStack = new Stack<>();
