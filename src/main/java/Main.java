@@ -1,39 +1,49 @@
-import java.util.ArrayList;
-import java.util.Stack;
+    import java.util.ArrayList;
 
-class Book{
-  String title;
-  String author;
-  String category;
+    import java.util.Scanner;
 
-  public Book(String title, String author, String category){
-    this.title = title;
-    this.author = author;
-    this.category = category;
-  }
+    import java.util.Stack;
 
-  @Override
+    class Book {
 
-      public String toString() {
+        String title;
 
-          return "Title: " + title + ", Author: " + author + ", Category: " + category;
+        String author;
 
-      }
+        String category;
 
-  }
+        public Book(String title, String author, String category) {
 
-  public class LibraryManagementSystem {
+            this.title = title;
 
-      
+            this.author = author;
 
-      private static final String[] categories = {"Fiction", "Non-Fiction", "Science", "History"};
+            this.category = category;
 
-      
+        }
 
-      private ArrayList<Book> books = new ArrayList<>();
+        @Override
+
+        public String toString() {
+
+            return "Title: " + title + ", Author: " + author + ", Category: " + category;
+
+        }
+
+    }
+
+    public class LibraryManagementSystem {
+
+        // Fixed-size array of categories
+
+        private static final String[] categories = {"Fiction", "Non-Fiction", "Science", "History"};
+
+        // Dynamic list of books
+
+        private ArrayList<Book> books = new ArrayList<>();
 
 
 
-      
+        // Stack for undo operations (for both remove and add operations)
 
-      private Stack<Book> removedBooksStack = new Stack<>();
+        private Stack<Book> lastInsertedBooks = new Stack<>();
